@@ -18,8 +18,10 @@ export interface IUser {
 export interface IProduct {
   id: number;
   name: string;
+  brand: string;
   price: number;
   weight: number;
+  inventory: number;
   createdAt: Date;
 }
 

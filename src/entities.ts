@@ -67,8 +67,10 @@ class Product implements IProduct {
 
   constructor(
     public name: string,
+    public brand: string,
     public price: number,
     public weight: number,
+    public inventory: number
   ) {
     this.id = generateRandomId();
     this.createdAt = new Date();
@@ -76,6 +78,14 @@ class Product implements IProduct {
 
   updatePrice(price: number) {
     this.price = price
+  }
+
+  decrementInventory() {
+    this.inventory--;
+  }
+
+  updateInventory(value: number) {
+    this.inventory = value;
   }
 }
 
