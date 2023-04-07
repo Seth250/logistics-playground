@@ -1,5 +1,5 @@
 export interface IMarker {
-  id?: number;
+  id: number;
   latitude: number;
   longitude: number;
   address: string;
@@ -44,6 +44,8 @@ export interface ICourier {
 
 export interface IShipment {
   id: number;
+  order: IOrder;
+  courier: ICourier;
   currentPosition: IMarker;
   createdAt: Date;
   shipmentDate: Date;

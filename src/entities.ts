@@ -29,21 +29,34 @@ class User implements IUser {
     this.id = generateRandomId();
     this.createdAt = new Date();
   }
+
+  updateLocation(location: Marker) {
+    this.location = location;
+  }
 }
 
 
 class Order implements IOrder {
   readonly id: number;
   readonly createdAt: Date;
+  public status: OrderStatus;
 
   constructor(
-    public status: OrderStatus,
     public products: Product[],
     public user: User,
     public deliveryLocation: Marker,
   ) {
     this.id = generateRandomId();
     this.createdAt = new Date();
+    this.status = 'processing';
+  }
+
+  updateStatus(status: 'delivered' | 'cancelled') {
+    this.status = status;
+  }
+
+  updateDeliveryLocation(location: Marker) {
+    this.deliveryLocation = location;
   }
 }
 
@@ -59,6 +72,10 @@ class Product implements IProduct {
   ) {
     this.id = generateRandomId();
     this.createdAt = new Date();
+  }
+
+  updatePrice(price: number) {
+    this.price = price
   }
 }
 
@@ -84,10 +101,19 @@ class Shipment implements IShipment {
 
   constructor(
     public order: Order,
+    public courier: Courier,
     public currentPosition: Marker,
     public shipmentDate: Date
   ) {
     this.id = generateRandomId();
     this.createdAt = new Date();
+  }
+
+  updateCurrentPosition(position: Marker) {
+    this.currentPosition = position;
+  }
+
+  updateShipmentDate(date: Date) {
+    this.shipmentDate = date;
   }
 }
